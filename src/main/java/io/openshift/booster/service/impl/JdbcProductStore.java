@@ -51,7 +51,7 @@ public class JdbcProductStore implements Store {
 
     return db.rxGetConnection()
       .flatMap(conn -> {
-        JsonArray params = new JsonArray().add(item.getValue("name")).add(item.getValue("stock", 0));
+        JsonArray params = new JsonArray().add(item.getValue("name")).add(item.getValue("stock", 100));
         return conn
           .rxUpdateWithParams(INSERT, params)
           .map(ur -> item.put("id", ur.getKeys().getLong(0)))
